@@ -31,6 +31,26 @@ const resolvers = {
 
             const token = signToken(user);
             return { token, user }
+        },
+        saveBook: async (parent, { bookId, token }) => {
+            // const userId = DECRYPT TOKEN AND GET THE USER ID SOMEHOW
+            return User.findOneAndUpdate(
+                { _id: userId },
+                { 
+                    $addToSet: { savedBooks: bookId }
+                },
+                { new: true }
+            )
+        },
+        deleteBook: async (parent, { bookId, token }) => {
+            // const userId = DECRYPT TOKEN AND GET THE USER ID SOMEHOW
+            return User.findOneAndUpdate(
+                { _id: userId },
+                {
+                    $pull: { savedBooks: bookId }
+                },
+                { new: true }
+            )
         }
     }
 }
