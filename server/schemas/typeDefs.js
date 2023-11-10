@@ -30,7 +30,8 @@ const typeDefs = `
         createUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        saveBook(authors: [authors!]!, description: String!, title: String!, image: String!, link: String!)
+        saveBook(userId: ID!, authors: [String]!, description: String!, title: String!, image: String!, link: String!): User
+        deleteBook(bookId: ID!): Book
     }
 `;
 

@@ -16,7 +16,7 @@ const resolvers = {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
 
-            return { token, profile }
+            return { token, user }
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -32,8 +32,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
-        saveBook: async (parent, { bookId, token }) => {
-            // const userId = DECRYPT TOKEN AND GET THE USER ID SOMEHOW
+        saveBook: async (parent, { bookId, userId }) => {
             return User.findOneAndUpdate(
                 { _id: userId },
                 { 
@@ -42,8 +41,7 @@ const resolvers = {
                 { new: true }
             )
         },
-        deleteBook: async (parent, { bookId, token }) => {
-            // const userId = DECRYPT TOKEN AND GET THE USER ID SOMEHOW
+        deleteBook: async (parent, { bookId, userId }) => {
             return User.findOneAndUpdate(
                 { _id: userId },
                 {
