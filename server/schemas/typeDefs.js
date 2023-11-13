@@ -9,11 +9,11 @@ const typeDefs = `
 
     type Book {
         bookId: String!
-        authors: [String]!
-        description: String!
-        title: String!
-        image: String!
-        link: String!
+        authors: [String]
+        description: String
+        title: String
+        image: String
+        link: String
     }
 
     type Auth {
@@ -24,6 +24,7 @@ const typeDefs = `
     type Query {
         getAllUsers: [User]!
         getSingleUser(userId: ID!): User
+        me: User
     }
 
     type Mutation {
