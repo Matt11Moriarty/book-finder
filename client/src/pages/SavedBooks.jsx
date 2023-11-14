@@ -7,7 +7,9 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+// import { getMe, deleteBook } from '../utils/API';
+import { QUERY_ME } from '../utils/queries'
+import { DELETE_BOOK } from '../utils/mutations'
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
@@ -26,7 +28,7 @@ const SavedBooks = () => {
           return false;
         }
 
-        const response = await getMe(token);
+        const response = await QUERY_ME(token);
 
         if (!response.ok) {
           throw new Error('something went wrong!');
@@ -51,7 +53,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      const response = await DELETE_BOOK(bookId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
