@@ -38,14 +38,17 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
-        saveBook: async (parent, { bookId, userId }) => {
-            return User.findOneAndUpdate(
-                { _id: userId },
-                { 
-                    $addToSet: { savedBooks: bookId }
-                },
-                { new: true }
-            )
+        saveBook: async (parent, { bookDetails }, context) => {
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { 
+                        $push: { savedBooks: bookDetails }
+                    },
+                    { new: true }
+                )
+            }
+            throw AuthenticationError
         },
         deleteBook: async (parent, { bookId, userId }) => {
             return User.findOneAndUpdate(

@@ -21,6 +21,15 @@ const typeDefs = `
         user: User
     }
 
+    input BookInput {   
+        bookId: String!
+        authors: [String]
+        description: String
+        title: String!
+        image: String!
+        link: String!
+    }
+
     type Query {
         getAllUsers: [User]!
         getSingleUser(userId: ID!): User
@@ -31,7 +40,7 @@ const typeDefs = `
         createUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        saveBook(userId: ID!, authors: [String]!, description: String!, title: String!, image: String!, link: String!): User
+        saveBook(bookDetails: BookInput!): User
         deleteBook(userId: ID!, bookId: ID!): User
     }
 `;
