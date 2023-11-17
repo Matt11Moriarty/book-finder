@@ -42,13 +42,14 @@ const resolvers = {
             console.log(bookDetails)
             console.log(context.user._id)
             if (context.user) {
-                return User.findOneAndUpdate(
+                const userToUpdate = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { 
-                        $push: { savedBooks: bookDetails }
+                        $addToSet: { savedBooks: bookDetails }
                     },
                     { new: true }
                 )
+                return userToUpdate
             }
             throw AuthenticationError
         },
