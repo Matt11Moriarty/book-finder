@@ -45,12 +45,16 @@ export const SAVE_BOOK = gql`
 `;
 
 export const DELETE_BOOK = gql`
-  mutation DeleteBook($userId: ID!, $bookId: ID!) {
-    deleteBook(userId: $userId, bookId: $bookId) {
-      _id
-      bookCount
-      username
-      savedBooks
+mutation deleteBook($bookId: ID!) {
+  deleteBook(bookId: $bookId) {
+    _id
+    username
+    email
+    bookCount
+    savedBooks {
+      title
+      bookId
     }
   }
+}
 `;
