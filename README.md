@@ -25,7 +25,7 @@ Run the code using `npm develop`
 
 ## Usage
 
-NOTE: This application was meant to be deployed using Heroku, however there has been no method shared that allows Heroku to work with Vite so it will need to be run locally for now.
+Site URL: https://book-finder-u8bf.onrender.com/
 
 ![Book finder demo gif](./client/public/book_finder_demo.gif)
 
